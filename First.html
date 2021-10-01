@@ -1,56 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <script src="j.js"></script>
+    <meta charset="UTF-8"/>
     <title>Title</title>
     <style type="text/css">
-    #wrapper {
-        padding: 20px;
-    }
-    li{
-        color: saddlebrown;
-        margin-left: 50%;
-    }
-    h1{
-        color: darkred;
-        margin-left: 50%;
-    }
-    img{
-        margin-left: 47%;
-    }
-    p{
-        margin-left: 50%;
-    }
-    textarea {
-        background: #fce9c0; 
-        border: 2px solid #a9c358; 
-        padding: 10px; 
-        width: 21%; 
-        height: 40px; 
-        box-sizing: border-box; 
-        font-size: 14px; 
-        margin-left: 47%;
-    }
-    </style>
-</head>
-<body bgcolor=#fffacd>
-<h1>Список дел</h1>
-<p><input maxlength="25" size="20" value="">
-    <button> Добавить</button>
-</p>
-<ol>
-    <li>Покормить кота
-        <button>&#10060;</button>
-    </li>
-    <li>Полить картошку
-        <button>&#10060;</button>
-    </li>
-    <li>Заплатить за интернет
-        <button>&#10060;</button>
-    </li>
-</ol>
+        body {
+            margin: 0;
+        }
 
-<img src="drunkcat.jpg" width="400" height="300">
-<t><textarea name="comment"></textarea></t>
+        .wraper {
+            margin: 0 auto;
+            width: 800px;
+        }
+
+        .header {
+            width: 100%;
+            background-color: darkslategray;
+            margin-top: 10px;
+        }
+
+        .list {
+            width: 100%;
+        }
+
+        .header h1 {
+            text-align: center;
+            color: white;
+        }
+
+        .innerheader {
+            padding: 10px;
+        }
+
+        input {
+            margin: 0;
+            border: none;
+            border-radius: 0;
+            width: 75%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            width: 20%;
+            background: #d9d9d9;
+            color: #555;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 0;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;
+
+        }
+
+        ul li:nth-child(odd) {
+            background: #f9f9f9;
+        }
+
+        ul li:hover {
+            background: #ddd;
+        }
+
+        ul li.checked {
+            background: #888;
+            color: #fff;
+            text-decoration: line-through;
+        }
+
+        ul li.checked::before {
+            content: '';
+            position: absolute;
+            border-color: #fff;
+            border-style: solid;
+            border-width: 0 2px 2px 0;
+            top: 10px;
+            left: 16px;
+            transform: rotate(45deg);
+            height: 15px;
+            width: 7px;
+        }
+
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 12px 16px 12px 16px;
+        }
+
+        .close:hover {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body bgcolor="#f0ffff">
+
+<div class="wraper">
+    <div class="header">
+        <div class="innerheader">
+            <h1>Заголовок</h1></br>
+            <input id = "Input" type="text" placeholder="Введите новое дело...">
+            <button onclick="newElement()"> Сохранить</button>
+        </div>
+
+    </div>
+    <div class="list">
+        <ul id="myUL">
+            <li class="checked">Покормить кота.</li>
+            <li>Выгулять картошку.</li>
+            <li>Написать сайт.</li>
+        </ul>
+    </div>
+</div>
+
+</br>
+
 </body>
 </html>
