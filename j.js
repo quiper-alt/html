@@ -5,15 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function addSpan(){
-    const myLiList = document.getElementsByTagName("li");
+    const myNodeList = document.getElementsByTagName("LI");
     let i;
-    for (i = 0; i < myLiList.length; i++) {
+    for (i = 0; i < myNodeList.length; i++) {
         const span = document.createElement("span");
         const txt = document.createTextNode("\u2716");
         span.className = "close";
         span.appendChild(txt);
-        myLiList[i].appendChild(span);
-
+        myNodeList[i].appendChild(span);
     }
 }
 
@@ -27,6 +26,7 @@ function clickClose() {
         }
     }
 }
+
 
 function addChecked(){
     const list = document.querySelector('ul');
@@ -54,7 +54,10 @@ function newElement() {
     const txt = document.createTextNode("\u2716");
     span.className = "close";
     span.appendChild(txt);
-
+    span.addEventListener('click', () => {
+       console.log('Нажали на Х');
+        li.remove();
+    });
     li.appendChild(span);
 }
 
