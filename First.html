@@ -112,6 +112,24 @@
             background-color: #f44336;
             color: white;
         }
+
+        .filter {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .filter-element {
+            flex: 1 0 auto;
+        }
+
+        .filter-element label {
+            white-space: nowrap;
+        }
+
+        .filter-element {
+            display: flex;
+            justify-content: center;
+        }
     </style>
 
 </head>
@@ -122,10 +140,25 @@
     <div class="header">
         <div class="innerheader">
             <h1>Заголовок</h1></br>
-            <input id = "Input" type="text" placeholder="Введите новое дело...">
+            <input id="Input" type="text" placeholder="Введите новое дело...">
             <button onclick="newElement()"> Сохранить</button>
         </div>
+        <div class="filter">
+            <div class="filter-element">
+                <label><input type="radio" id="contactChoice1"
+                              name="contact" value="r1">Сделано</label>
+            </div>
+            <div class="filter-element">
 
+                <label for="contactChoice2"><input type="radio" id="contactChoice2"
+                                                   name="contact" value="r2">Не сделано</label>
+            </div>
+            <div class="filter-element">
+
+                <label for="contactChoice3"><input type="radio" id="contactChoice3"
+                                                   name="contact" value="r3">Все</label>
+            </div>
+        </div>
     </div>
     <div class="list">
         <ul id="myUL">
