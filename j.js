@@ -1,63 +1,82 @@
-document.addEventListener("DOMContentLoaded", () => {
-    addSpan();
-    clickClose();
-    addChecked();
-});
+const array = []
+let curFilter = "";
 
-function addSpan(){
-    const myNodeList = document.getElementsByTagName("LI");
-    let i;
-    for (i = 0; i < myNodeList.length; i++) {
-        const span = document.createElement("span");
-        const txt = document.createTextNode("\u2716");
-        span.className = "close";
-        span.appendChild(txt);
-        myNodeList[i].appendChild(span);
-    }
-}
-
-function clickClose() {
-    const close = document.getElementsByClassName("close");
-    let i;
-    for (i = 0; i < close.length; i++) {
-        close[i].onclick = function () {
-            const div = this.parentElement;
-            div.style.display = "none";
-        }
-    }
-}
-
-
-function addChecked(){
-    const list = document.querySelector('ul');
-    list.addEventListener('click', function(ev) {
-        if (ev.target.tagName === 'LI') {
-            ev.target.classList.toggle('checked');
-        }
-    }, false);
-}
 function newElement() {
-    const li = document.createElement("li");
-    const inputText = document.getElementById("Input").value;
-    const text = document.createTextNode(inputText);
+    const str = document.getElementById("Input").value;
 
-    li.appendChild(text);
-
-    if (inputText === '') {
+    if (str === '') {
         alert("Вы не ввели текст");
     } else {
-        document.getElementById("myUL").appendChild(li);
+        array.push({title: str, isChecked: false});
+        filterList();
+        document.getElementById("Input").value = "";
     }
-    document.getElementById("Input").value = "";
-
-    const span = document.createElement("span");
-    const txt = document.createTextNode("\u2716");
-    span.className = "close";
-    span.appendChild(txt);
-    span.addEventListener('click', () => {
-       console.log('Нажали на Х');
-        li.remove();
-    });
-    li.appendChild(span);
 }
+
+
+function render(array) {
+    const getList = document.getElementById("myList");
+    getList.innerHTML = "";
+    array.forEach((e, index) => {
+            const text = document.createElement("span");
+            text.innerText = e.title;
+            const element = document.createElement("li");
+
+            const btn = document.createElement("button");
+            btn.appendChild(document.createTextNode("Удалить"));
+            btn.addEventListener("click", () => del(e));
+
+            const checkBox = document.createElement("input");
+            checkBox.type = "checkbox";
+            checkBox.addEventListener("click", () => checkBox_Checked(e));
+            checkBox.checked = e.isChecked;
+
+            if (checkBox.checked) {
+                text.style.textDecoration = "line-through";
+            }
+
+            element.appendChild(text);
+            element.appendChild(checkBox);
+            element.appendChild(btn);
+            getList.appendChild(element);
+        }
+    );
+}
+
+function del(element) {
+    const findDelIndx = array.findIndex(e => e === element);
+
+    array.splice(findDelIndx, 1);
+    filterList();
+}
+
+function checkBox_Checked(element) {
+    const findDelIndx = array.findIndex(e => e === element);
+
+    array[findDelIndx].isChecked = !array[findDelIndx].isChecked;
+    filterList();
+}
+
+function changeFilter(event) {
+    event.preventDefault();
+    if (curFilter === event.target.textContent) {
+        return;
+    }
+    curFilter = event.target.textContent;
+    filterList();
+}
+
+function filterList() {
+    const filterList = [];
+    if (curFilter === "Сделано" || curFilter === "Не сделано") {
+        array.forEach(e => {
+            if (e.isChecked === (curFilter === "Сделано"))
+                filterList.push(e);
+        });
+        render(filterList);
+        return;
+    }
+    render(array);
+}
+
 

@@ -116,20 +116,10 @@
         .filter {
             display: flex;
             flex-direction: row;
+
         }
 
-        .filter-element {
-            flex: 1 0 auto;
-        }
 
-        .filter-element label {
-            white-space: nowrap;
-        }
-
-        .filter-element {
-            display: flex;
-            justify-content: center;
-        }
     </style>
 
 </head>
@@ -139,33 +129,26 @@
 <div class="wraper">
     <div class="header">
         <div class="innerheader">
-            <h1>Заголовок</h1></br>
+            <h1>Список дел</h1></br>
             <input id="Input" type="text" placeholder="Введите новое дело...">
             <button onclick="newElement()"> Сохранить</button>
         </div>
+
+
         <div class="filter">
-            <div class="filter-element">
-                <label><input type="radio" id="contactChoice1"
-                              name="contact" value="r1">Сделано</label>
-            </div>
-            <div class="filter-element">
-
-                <label for="contactChoice2"><input type="radio" id="contactChoice2"
-                                                   name="contact" value="r2">Не сделано</label>
-            </div>
-            <div class="filter-element">
-
-                <label for="contactChoice3"><input type="radio" id="contactChoice3"
-                                                   name="contact" value="r3">Все</label>
-            </div>
+            <a href="#" onclick="changeFilter(event)" style="color: azure">Сделано</a>
+            <a href="#" onclick="changeFilter(event)" style="color: azure">Не сделано</a>
+            <a href="#" onclick="changeFilter(event)" style="color: azure">Все</a>
         </div>
+
+
     </div>
-    <div class="list">
-        <ul id="myUL">
+    <div class="wraperlist">
+        <ol id="myList">
             <!--<li class="checked">Покормить кота.</li>
             <li>Выгулять картошку.</li>
             <li>Написать сайт.</li>-->
-        </ul>
+        </ol>
     </div>
 </div>
 
